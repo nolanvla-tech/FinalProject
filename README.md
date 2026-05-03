@@ -154,7 +154,7 @@ PortfolioProject/
 3. **Configure Service**
    - **Name**: `nolan-portfolio` (or your preferred name)
    - **Environment**: Select Python 3.11
-   - **Build Command**: `pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --no-input`
+   - **Build Command**: `chmod +x build.sh && ./build.sh`
    - **Start Command**: `gunicorn ai_portfolio.wsgi`
 
 4. **Set Environment Variables**
