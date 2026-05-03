@@ -1,0 +1,409 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} - Nolan La{% endblock %}
+
+{% block custom_css %}
+.breadcrumb-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.breadcrumb-custom {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.breadcrumb-item {
+    color: var(--text-light);
+}
+
+.breadcrumb-item a {
+    color: var(--accent-blue);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.project-header {
+    margin-bottom: 3rem;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumb-item {
+    color: #8b949e;
+}
+
+.breadcrumb-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--text-color);
+}
+
+.project-title-large {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.project-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meta-label {
+    color: #8b949e;
+    font-size: 0.9rem;
+}
+
+.meta-value {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background-color: rgba(88, 166, 255, 0.1);
+    color: var(--accent-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.project-media {
+    margin-bottom: 2rem;
+}
+
+.project-full-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.project-video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.project-video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.project-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+}
+
+.project-description-section {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 2rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.project-description-section p {
+    color: #c9d1d9;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.tools-section {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 1rem;
+}
+
+.tools-section h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tool-tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background-color: rgba(88, 166, 255, 0.1);
+    color: var(--accent-color);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.action-buttons a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-project-link {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.btn-project-link:hover {
+    background-color: #79c0ff;
+}
+
+.btn-back {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-back:hover {
+    background-color: #30363d;
+    color: var(--accent-color);
+}
+
+/* Related Projects */
+.related-projects-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.related-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.related-project-card {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.related-project-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
+}
+
+.related-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background-color: #161b22;
+}
+
+.related-card-body {
+    padding: 1.5rem;
+}
+
+.related-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.related-category {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .project-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .tools-section {
+        position: static;
+    }
+    
+    .project-title-large {
+        font-size: 2rem;
+    }
+    
+    .project-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Navigation -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'projects:projects_list' %}">Projects</a></li>
+        <li class="breadcrumb-item active">{{ project.title }}</li>
+    </ol>
+</nav>
+
+<!-- Project Header -->
+<div class="project-header">
+    <h1 class="project-title-large">{{ project.title }}</h1>
+    
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="category-badge">{{ project.get_category_display }}</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Created:</span>
+            <span class="meta-value">{{ project.created_at|date:"M d, Y" }}</span>
+        </div>
+        {% if project.project_url %}
+        <div class="meta-item">
+            <span class="meta-label">Status:</span>
+            <span class="meta-value">Live</span>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Project Media -->
+{% if project.featured_image or project.video_embed_url %}
+<div class="project-media">
+    {% if project.video_embed_url %}
+        <div class="project-video-embed">
+            <iframe src="{{ project.video_embed_url }}" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+    {% elif project.featured_image %}
+        <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-full-image">
+    {% endif %}
+</div>
+{% endif %}
+
+<!-- Main Content -->
+<div class="project-content">
+    <!-- Description -->
+    <div>
+        <div class="project-description-section">
+            <h2 class="section-title">About This Project</h2>
+            <div class="project-description-text">
+                {{ project.description|linebreaks }}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <aside>
+        {% if project.tools_used %}
+        <div class="tools-section">
+            <h3>🛠️ Tech Stack</h3>
+            <div>
+                <p style="color: #8b949e; font-size: 0.9rem; line-height: 1.6;">
+                    {{ project.tools_used }}
+                </p>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="action-buttons">
+            {% if project.github_url or project.demo_url %}
+                {% if project.github_url %}
+                <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+                    🔗 View on GitHub
+                </a>
+                {% endif %}
+                {% if project.demo_url %}
+                <a href="{{ project.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+                    ▶️ View Demo
+                </a>
+                {% endif %}
+            {% endif %}
+            <a href="{% url 'projects:projects_list' %}" class="btn-back">
+                ← Back to Projects
+            </a>
+        </div>
+    </aside>
+</div>
+
+<!-- Related Projects -->
+{% if related_projects %}
+<section class="related-projects-section">
+    <h2 class="section-title" style="border: none; margin-bottom: 2rem;">More from {{ project.get_category_display }}</h2>
+    
+    <div class="related-projects-grid">
+        {% for related_project in related_projects %}
+        <a href="{% url 'projects:project_detail' related_project.pk %}" style="text-decoration: none; color: inherit;">
+            <div class="related-project-card">
+                {% if related_project.featured_image %}
+                    <img src="{{ related_project.featured_image.url }}" alt="{{ related_project.title }}" class="related-image">
+                {% else %}
+                    <div class="related-image" style="display: flex; align-items: center; justify-content: center; font-size: 2rem;">📦</div>
+                {% endif %}
+                
+                <div class="related-card-body">
+                    <p class="related-category">{{ related_project.get_category_display }}</p>
+                    <h3 class="related-title">{{ related_project.title }}</h3>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

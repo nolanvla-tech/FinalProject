@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Nolan La{% endblock %}
+
+{% block custom_css %}
+.contact-header {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.contact-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-intro {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.contact-info {
+    background-color: white;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.contact-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-blue);
+}
+
+.contact-item {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 102, 204, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.contact-detail-title {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.contact-detail-value {
+    color: var(--text-light);
+}
+
+.contact-detail-value a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.contact-detail-value a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-blue);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: #0052a3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+}
+
+.contact-form {
+    background-color: white;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.contact-form h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 0.85rem 2rem;
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0052a3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+}
+
+.success-message {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .contact-header h1 {
+        font-size: 2rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<section class="contact-header">
+    <h1>Get In Touch</h1>
+    <p class="contact-intro">
+        I'm always interested in hearing about new opportunities, collaborations, or just having a conversation about strategy, technology, and innovation.
+    </p>
+</section>
+
+<!-- Contact Grid -->
+<div class="contact-grid">
+    <!-- Contact Information -->
+    <div class="contact-info">
+        <h3>Contact Information</h3>
+        
+        <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div>
+                <div class="contact-detail-title">Email</div>
+                <div class="contact-detail-value">
+                    <a href="mailto:nolan_la1@baylor.edu">nolan_la1@baylor.edu</a><br>
+                    <a href="mailto:nolanvla@gmail.com">nolanvla@gmail.com</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+                <div class="contact-detail-title">Phone</div>
+                <div class="contact-detail-value">
+                    <a href="tel:+14694066650">(469) 406-6650</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+                <div class="contact-detail-title">Location</div>
+                <div class="contact-detail-value">Chicago, Illinois</div>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <div>
+                <div class="contact-detail-title">Current</div>
+                <div class="contact-detail-value">
+                    Senior Analyst, Baylor Angel Network<br>
+                    <small style="color: #999;">Joining KPMG in August 2026</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://linkedin.com/in/nolanla" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://github.com/nolanvla-tech" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                <i class="bi bi-github"></i>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <h3>Send Me a Message</h3>
+        
+        {% if messages %}
+            {% for message in messages %}
+            <div class="success-message">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                Send Message <i class="bi bi-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
