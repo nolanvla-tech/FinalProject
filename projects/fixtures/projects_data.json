@@ -388,13 +388,13 @@
     "model": "projects.experience",
     "pk": 1,
     "fields": {
-      "title": "Bachelor of Business Administration (BBA)",
+      "title": "BBA in Baylor Business Fellows (Business Honors Program)",
       "company": "Baylor University",
       "experience_type": "education",
       "location": "Waco, Texas",
       "start_date": "2022-08-01",
-      "end_date": "2026-05-15",
-      "description": "Major: Finance, Strategy & MIS\nMinor: Entrepreneurship\nGPA: 3.82/4.0\nRelevant Coursework: Financial Analysis, Corporate Strategy, Business Analytics, Database Management",
+      "end_date": "2026-05-01",
+      "description": "Triple Major in Finance, Economics, and Management Information Systems\nGPA: 3.82 / 4.00\nHonors: Deans List (4x), Invitation to Excellence (Scholarship Program), Janet A. Rhines Scholarship in Economics",
       "display_order": 1
     }
   },
@@ -402,13 +402,13 @@
     "model": "projects.experience",
     "pk": 2,
     "fields": {
-      "title": "Senior Analyst",
+      "title": "Early-Stage Venture Analyst",
       "company": "Baylor Angel Network",
       "experience_type": "work",
       "location": "Waco, Texas",
       "start_date": "2024-09-01",
       "end_date": null,
-      "description": "Conduct early-stage venture analysis and due diligence\nEvaluate business models and financial projections\nAssist in investment decision-making processes\nManage portfolio company relationships",
+      "description": "Performing due diligence, building financial models, and conducting market research for early-stage companies, to assess investment potential for 140+ angel investors with over a $60m investment portfolio.\nEvaluated capital structures including SAFE notes, equity, and convertible debt for startups across the MedTech, Consumer Packaged Goods, and AI SaaS sectors with $10m+ valuations seeking funding between $1m-$4m.",
       "display_order": 2
     }
   },
@@ -419,10 +419,10 @@
       "title": "Summer Financial Analyst",
       "company": "Dell Technologies",
       "experience_type": "work",
-      "location": "Austin, Texas",
+      "location": "Round Rock, Texas",
       "start_date": "2025-06-01",
-      "end_date": "2025-08-31",
-      "description": "Conducted financial analysis on business unit performance\nCreated executive dashboards and reporting systems\nAnalyzed quarterly revenue trends and forecasting\nSupported M&A due diligence process",
+      "end_date": "2025-08-01",
+      "description": "Analyzed 30+ server deals worth over $10m in revenue for Dells Infrastructure Solutions Pricing Group, pricing GPU and CPU SKUs and building a standardized storage pricing tool to improve deal profitability and margins.\nDeveloped VBA macros to automate P&L statement generation and the standardization of financial reporting processes, cutting processing time by 2 hours per week and improving the consistency of deal analysis.",
       "display_order": 3
     }
   },
@@ -433,10 +433,10 @@
       "title": "IT Implementations Intern",
       "company": "Southwest Solutions Group",
       "experience_type": "work",
-      "location": "Chicago, Illinois",
+      "location": "Dallas, Texas",
       "start_date": "2024-05-01",
-      "end_date": "2024-08-31",
-      "description": "Implemented IT solutions for enterprise clients\nManaged project timelines and client communications\nTroubleshooting technical issues and supporting deployments\nDocumented processes and created user guides",
+      "end_date": "2024-08-01",
+      "description": "Built out dynamic tables and graphs with SQL for a $1m paper scanning project by collaborating with IT professionals displaying day-to-day worker productivity, improving data management and project efficiency.\nTraveled to 6 client sites to troubleshoot technical issues with storage systems, improving system efficiency and uptime, having installed and configured 10+ software solutions to enhance overall IT performance.",
       "display_order": 4
     }
   },
@@ -447,10 +447,10 @@
       "title": "Revenue Cycle Management Intern",
       "company": "Stella Mattina",
       "experience_type": "work",
-      "location": "Chicago, Illinois",
+      "location": "Dallas, Texas",
       "start_date": "2023-06-01",
-      "end_date": "2023-08-31",
-      "description": "Analyzed healthcare revenue cycles and billing processes\nIdentified cost reduction opportunities\nCreated process improvement recommendations\nTrained staff on new billing procedures",
+      "end_date": "2023-08-01",
+      "description": "Managed medical billing systems for a healthcare acquisition holding company, tracking insurance payments and revenue cycle pricing across 12 OB/GYN practices across the Dallas-Fort Worth Metroplex.\nAssisted in the acquisition of an OB/GYN family office by digitizing 300+ patient files and conducting market research to adjust procedure pricing in line with regional benchmarks to improve firm financial performance.",
       "display_order": 5
     }
   },
@@ -458,13 +458,13 @@
     "model": "projects.experience",
     "pk": 6,
     "fields": {
-      "title": "Board Member",
+      "title": "Co-Founder",
       "company": "Bearly Used Sustainability Initiative",
       "experience_type": "leadership",
       "location": "Waco, Texas",
-      "start_date": "2023-08-01",
+      "start_date": "2024-09-01",
       "end_date": null,
-      "description": "Lead sustainability initiatives on campus\nCoordinate with administration on environmental policies\nOrganize community engagement and education events\nManage project budgets and timelines",
+      "description": "Founded Baylors first coordinated move-out donation program, leading 23 volunteers to divert 50,000+ pounds of items (estimated $200k+) from landfills to 11 non-profit organizations, solving a major sustainability challenge.\nDesigned and implemented an operational framework across 16 residence halls, collaborating with campus sustainability departments to streamline collection, sorting, and transportation to maximize efficiency and scalability.",
       "display_order": 6
     }
   },
@@ -472,14 +472,28 @@
     "model": "projects.experience",
     "pk": 7,
     "fields": {
-      "title": "Leadership Consultant",
+      "title": "Director of Recruitment",
       "company": "The Consulting Group (TCG) - Baylor",
       "experience_type": "leadership",
       "location": "Waco, Texas",
-      "start_date": "2024-01-01",
+      "start_date": "2023-08-01",
       "end_date": null,
-      "description": "Provide strategic consulting to student organizations\nFacilitate business planning and strategy sessions\nMentor emerging student leaders\nDevelop organizational best practices guides",
+      "description": "Recruited 39 new students by conducting targeted outreach, hosting two information sessions and three foundation series sessions to introduce new members to core consulting principles, frameworks, and career pathways.\nAdvised a cold plunge tub startup supplying NFL teams, on developing a recurring revenue model; created a subscription pricing strategy for tub and ice machine cleaners, projecting $75+ yearly revenue per customer.",
       "display_order": 7
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 8,
+    "fields": {
+      "title": "Incoming Strategy Technology M&A Associate",
+      "company": "KPMG",
+      "experience_type": "work",
+      "location": "Chicago, Illinois",
+      "start_date": "2026-08-01",
+      "end_date": null,
+      "description": "Incoming full-time role on the Strategy Technology M&A team.",
+      "display_order": 0
     }
   }
 ]
