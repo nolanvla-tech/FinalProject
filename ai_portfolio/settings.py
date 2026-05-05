@@ -147,6 +147,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Include media directory in static files so WhiteNoise serves profile images
+STATICFILES_DIRS = [
+    ('media', BASE_DIR / 'media'),
+]
+
 # Use WhiteNoise storage if available (for production compression)
 try:
     import whitenoise
@@ -154,9 +159,8 @@ try:
 except ImportError:
     pass
 
-# Media files (User uploads: images, videos)
-# https://docs.djangoproject.com/en/6.0/topics/files/
-MEDIA_URL = '/media/'
+# Media files - served via WhiteNoise at /static/media/ in production
+MEDIA_URL = '/static/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
