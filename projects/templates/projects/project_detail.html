@@ -221,6 +221,71 @@
     color: var(--accent-color);
 }
 
+/* Workflow Viewer */
+.workflow-viewer {
+    margin-top: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.workflow-viewer-header {
+    background: #f8f9fa;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.workflow-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    background: #f8f9fa;
+    overflow-x: auto;
+}
+
+.workflow-tab {
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-light);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.workflow-tab:hover { color: var(--accent-blue); }
+
+.workflow-tab.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+    background: white;
+}
+
+.workflow-code-window {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    max-height: 500px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: #d4d4d4;
+    white-space: pre;
+}
+
+.workflow-loading {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-light);
+    background: #1e1e1e;
+}
+
 /* Related Projects */
 .related-projects-section {
     margin-top: 3rem;
@@ -379,6 +444,48 @@
         </div>
     </aside>
 </div>
+
+<!-- n8n Workflow File Viewer -->
+{% if project.category == 'n8n_automation' %}
+<div class="workflow-viewer">
+    <div class="workflow-viewer-header">Workflow Files</div>
+    <div class="workflow-tabs">
+        <button class="workflow-tab active" onclick="loadFile('Orchestrator', this)">Orchestrator</button>
+        <button class="workflow-tab" onclick="loadFile('Intake', this)">Intake</button>
+        <button class="workflow-tab" onclick="loadFile('Comms', this)">Comms</button>
+        <button class="workflow-tab" onclick="loadFile('Pricing', this)">Pricing</button>
+        <button class="workflow-tab" onclick="loadFile('Scheduling', this)">Scheduling</button>
+    </div>
+    <div id="workflow-code" class="workflow-loading">Loading...</div>
+</div>
+
+<script>
+    const baseUrl = 'https://raw.githubusercontent.com/nolanvla-tech/FinalProject/main/Agent%20-%20';
+
+    function loadFile(name, tab) {
+        document.querySelectorAll('.workflow-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const codeWindow = document.getElementById('workflow-code');
+        codeWindow.className = 'workflow-loading';
+        codeWindow.textContent = 'Loading...';
+
+        fetch(baseUrl + encodeURIComponent(name) + '.json')
+            .then(r => r.text())
+            .then(text => {
+                const formatted = JSON.stringify(JSON.parse(text), null, 2);
+                codeWindow.className = 'workflow-code-window';
+                codeWindow.textContent = formatted;
+            })
+            .catch(() => {
+                codeWindow.className = 'workflow-loading';
+                codeWindow.textContent = 'Could not load file.';
+            });
+    }
+
+    loadFile('Orchestrator', document.querySelector('.workflow-tab'));
+</script>
+{% endif %}
 
 <!-- Related Projects -->
 {% if related_projects %}
