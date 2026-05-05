@@ -1,0 +1,146 @@
+{
+  "name": "Agent - Scheduling",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agent-scheduling",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b6d5875d-d3ee-46a0-a809-2a519aefb6fc",
+      "name": "Webhook",
+      "webhookId": "b2560f3c-c826-43c2-8ad9-6b9a99751415"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b2fb25a-dcbc-434b-b15e-e3ba6648196e",
+              "name": "request",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c152a605-4826-46c4-a166-292bc832e634",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "url": "=https://timeapi.io/api/Time/current/zone?timeZone=America/Chicago",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "58fe7746-c432-40a4-8f83-73dce1a7b288",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const slots = [\n\"Thu 4:30pm\",\n\"Thu 5:30pm\",\n\"Sat 9:00am\",\n\"Sat 10:30am\",\n\"Sun 1:00pm\"\n];\nconst preferred = []; // Define 'preferred' variable as an empty array or initialize with your desired values.\nlet filtered = slots;\nif (preferred.length > 0) {\nfiltered = slots.filter(s => preferred.some(d => s.startsWith(d)));\n}\nreturn [{\nproposed_slots: filtered.slice(0, 3),\nnote: \"Reply with a slot to confirm. Arrival window is 2 hours.\"\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "9ca7d2b7-7344-4fc8-a922-e67fea44f806",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        832,
+        0
+      ],
+      "id": "2b6d56e3-4fbc-4f88-a4f5-172e4b1dbdeb",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4a6c2662-6fe4-41b4-a4f9-90b94a69f7a5",
+  "meta": {
+    "instanceId": "7c474d8ac597cec5b31faab71dd3facf0f964a266f94333092d906ecfa79402b"
+  },
+  "id": "ZNDsUbpXPRheWeyR",
+  "tags": []
+}

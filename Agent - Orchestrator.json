@@ -1,0 +1,556 @@
+{
+  "name": "Agent - Orchestrator",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "da32aec2-2080-42ec-a552-e6ef196b3ea0",
+              "name": "job",
+              "value": "={{ $json}}",
+              "type": "object"
+            },
+            {
+              "id": "aad08ee4-8033-4f01-b52d-dea7c5c52ad6",
+              "name": "client_name",
+              "value": "=: {{ $node[\"Normalize Form Data\"].json.client_name }}",
+              "type": "string"
+            },
+            {
+              "id": "8911d25a-1ba0-4efc-a0ad-f6e637e49942",
+              "name": "client_email",
+              "value": "={{ $node[\"Normalize Form Data\"].json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "5e510d0b-26fa-4aaa-bcbc-c0a7b80e1192",
+              "name": "client_first_name",
+              "value": "={{ $node[\"Normalize Form Data\"].json.first_name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1136,
+        16
+      ],
+      "id": "3093367e-37a2-42da-b853-869e6c552848",
+      "name": "Store Job"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://granol4.app.n8n.cloud/webhook/agent-intake",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        912,
+        16
+      ],
+      "id": "9df28144-dc32-4c93-a12e-1047bb901dde",
+      "name": "Call Intake Agent"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://granol4.app.n8n.cloud/webhook/agent-pricing",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "service",
+              "value": "={{$json.service}}"
+            },
+            {
+              "name": "zip",
+              "value": "={{$json.zip}}"
+            },
+            {
+              "name": "urgency",
+              "value": "={{$json.urgency}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1360,
+        16
+      ],
+      "id": "7ba651ac-7e94-4eb2-930b-0126d28b57b5",
+      "name": "Call Pricing Agent"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://granol4.app.n8n.cloud/webhook/agent-scheduling",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "preferred_days",
+              "value": "{{$json.job.preferred_days}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        576,
+        256
+      ],
+      "id": "b75f6c8e-67f7-4dac-ae66-8d910cde367a",
+      "name": "Call Scheduling Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "16830e60-9d1b-4b41-ad54-71a32bf2fa22",
+              "name": "pricing",
+              "value": "={{ $json }}",
+              "type": "object"
+            },
+            {
+              "id": "c69ecbf4-b89a-43f6-b704-db3dca813f89",
+              "name": "Job",
+              "value": "={{ $node[\"Store Job\"].json.job }}",
+              "type": "object"
+            },
+            {
+              "id": "c6fbbe5c-9e9d-457a-9d08-4bcfa78b6ac6",
+              "name": "client_email",
+              "value": "={{ $node[\"Store Job\"].json.client_email }})",
+              "type": "string"
+            },
+            {
+              "id": "8e27d4d4-489f-44d6-8d87-04211a129253",
+              "name": "client_first_name",
+              "value": "={{ $node[\"Store Job\"].json.client_first_name }})",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1584,
+        16
+      ],
+      "id": "d340e327-041f-4b0e-abd3-f6dd4d674ccf",
+      "name": "Store Pricing"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c77da8dc-4ad6-478d-9fa3-a6aecc6abd61",
+              "name": "scheduling",
+              "value": "={{ $json }}",
+              "type": "object"
+            },
+            {
+              "id": "21e11c48-55b4-422a-919c-ace59e5b651c",
+              "name": "pricing",
+              "value": "={{ $node[\"Store Pricing\"].json.pricing }}",
+              "type": "object"
+            },
+            {
+              "id": "abd144f2-3094-445a-aa3e-671556b41977",
+              "name": "job",
+              "value": "={{ $node[\"Store Job\"].json.job }}",
+              "type": "object"
+            },
+            {
+              "id": "93e474aa-2ba9-4570-a384-78eeb13bc5a1",
+              "name": " client_email",
+              "value": "={{ $node[\"Store Job\"].json.client_email }}",
+              "type": "string"
+            },
+            {
+              "id": "b25ab455-0db5-4e1b-9bf2-bd34f1536e3f",
+              "name": "client_first_name",
+              "value": "={{ $node[\"Store Job\"].json.client_first_name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        832,
+        256
+      ],
+      "id": "812e3ac9-876d-4f1e-9c8e-c305d655ec5f",
+      "name": "Store Scheduling"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://granol4.app.n8n.cloud/webhook/agent-comms",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"job\": $json.job, \"pricing\": $json.pricing, \"scheduling\": $json.scheduling, \"client_first_name\":$json.client_first_name } }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1056,
+        256
+      ],
+      "id": "c27a563f-9dea-4b7b-aed9-0c1916367ed6",
+      "name": "Calls Comms Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a47bbd78-f0b0-4dfd-8969-94a3571ad6aa",
+              "name": "comms",
+              "value": "={{ $json }}",
+              "type": "object"
+            },
+            {
+              "id": "c8c45dde-1918-4296-9989-b3355ce0d3ab",
+              "name": "job",
+              "value": "={{ $node[\"Store Job\"].json.job }}",
+              "type": "object"
+            },
+            {
+              "id": "2bd4d043-1a1c-464f-857c-8373f161ffe4",
+              "name": "pricing",
+              "value": "={{ $node[\"Store Pricing\"].json.pricing }}",
+              "type": "object"
+            },
+            {
+              "id": "2e0cee75-5e17-40e6-8566-e6a79608313d",
+              "name": "client_email",
+              "value": "={{ $node[\"Store Job\"].json.client_email }}",
+              "type": "string"
+            },
+            {
+              "id": "1f7fcb08-8138-4019-aa50-699c5a89889b",
+              "name": "client_first_name",
+              "value": "={{ $node[\"Store Job\"].json.client_first_name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1280,
+        256
+      ],
+      "id": "5e7e05ec-bfb0-47b5-ab47-d0fab09f5450",
+      "name": "Store Comms Agent"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.client_email }}",
+        "subject": "={{ $json.comms.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.comms.message }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1504,
+        256
+      ],
+      "id": "77970b35-ce4f-4209-8b8b-99b9b23bbfc5",
+      "name": "Send a message",
+      "webhookId": "5b5ff2ee-aa12-485b-bd24-281eb12184e1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "m3imsEGHRnyMF31z",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "15ZEatjpl3f5bLQeMyfzZ-HJa1iIqacMdzsaCe5zqU0M",
+          "mode": "list",
+          "cachedResultName": "Service Consultation (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15ZEatjpl3f5bLQeMyfzZ-HJa1iIqacMdzsaCe5zqU0M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 260815311,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15ZEatjpl3f5bLQeMyfzZ-HJa1iIqacMdzsaCe5zqU0M/edit#gid=260815311"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        496,
+        16
+      ],
+      "id": "3f0c85cb-4874-4ff7-b71e-f6ad02c6d6a5",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "I1Z8WI5eazUBgZt6",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b731c4a5-8a0c-4a7c-897d-8e9c74e320e6",
+              "name": "message",
+              "value": "={{ $json[\"Please describe what service you need and available dates and times?\"] + \" Address: \" + $json[\"Your Service Address\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "783b5fd3-bd7c-48bd-ac87-070a76437840",
+              "name": "=client_name",
+              "value": "={{ $json['Your Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "72fe1c69-7163-4342-8b85-17edf29b61c0",
+              "name": "first_name",
+              "value": "={{ ($json[\"Your Name\"] || \"\").trim().split(\" \")[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "57b37279-1667-40b0-ad2c-deeca7a6b035",
+              "name": "email",
+              "value": "={{$json[\"Your Email Address\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "ce09e69e-e7cc-48cb-82e5-340a096c1545",
+              "name": "service_address",
+              "value": "={{ $json['Your Service Address'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        16
+      ],
+      "id": "c3646578-5bb6-4a45-b064-6b2f273cc2e8",
+      "name": "Normalize Form Data"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Store Job": {
+      "main": [
+        [
+          {
+            "node": "Call Pricing Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Intake Agent": {
+      "main": [
+        [
+          {
+            "node": "Store Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Pricing Agent": {
+      "main": [
+        [
+          {
+            "node": "Store Pricing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Scheduling Agent": {
+      "main": [
+        [
+          {
+            "node": "Store Scheduling",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Pricing": {
+      "main": [
+        [
+          {
+            "node": "Call Scheduling Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Scheduling": {
+      "main": [
+        [
+          {
+            "node": "Calls Comms Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calls Comms Agent": {
+      "main": [
+        [
+          {
+            "node": "Store Comms Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Comms Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Normalize Form Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Form Data": {
+      "main": [
+        [
+          {
+            "node": "Call Intake Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "711ca16a-6a26-4741-9682-0ab1bc2c1c1e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7c474d8ac597cec5b31faab71dd3facf0f964a266f94333092d906ecfa79402b"
+  },
+  "id": "FtPUWrUD37thqaL7",
+  "tags": []
+}

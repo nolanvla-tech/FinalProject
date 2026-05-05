@@ -1,0 +1,133 @@
+{
+  "name": "Agent - Comms",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agent-comms",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "dfbc6e91-e550-4e22-b100-1ccdb1d02e77",
+      "name": "Webhook",
+      "webhookId": "9b75da4b-3dc2-412f-b883-8a72de854f62"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=IMPORTANT:\n- Output ONLY valid JSON.\n- Do NOT use markdown.\n- Do NOT use ``` fences.\n- Do NOT add explanations.\n- The entire response must start with { and end with }.\n- Use the client's actual first name provided. Do not use placeholders.\n\nWrite a professional service confirmation email for a handyman company.\nReturn ONLY JSON with exactly these keys:\n{\n  \"subject\": \"\",\n  \"body\": \"\"\n}\n\nRequirements for the email body:\n- Address the client by first name only\n- Professionally summarize the requested service\n- Include the estimated price with a brief breakdown\n- List the proposed available time slots\n- Include a clear next step / call-to-action\n- Close with a professional sign-off from 'Handyman Ops Desk'\n- Use \\n for line breaks within the body string\n\nClient first name:\n{{ $json.body.client_first_name }}\n\nJob:\n{{ JSON.stringify($json.body.job) }}\n\nPricing:\n{{ JSON.stringify($json.body.pricing) }}\n\nScheduling:\n{{ JSON.stringify($json.body.scheduling) }}\n"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "be68a6b0-7e3b-413a-8547-ccfed7efac0f",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "vSIKi76j9NDtvBKp",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $json.content?.parts?.[0]?.text || \"\";\nlet obj;\ntry {\n  obj = JSON.parse(raw);\n} catch (e1) {\n  const cleaned = raw\n    .replace(/```json\\s*/i, \"\")\n    .replace(/```/g, \"\")\n    .trim();\n  try {\n    obj = JSON.parse(cleaned);\n  } catch (e2) {\n    throw new Error(\"Comms output not valid JSON. Raw: \" + raw);\n  }\n}\nreturn [{\n  subject: obj.subject ?? \"Service Request Confirmation\",\n  message: obj.body ?? obj.message ?? \"\"\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        0
+      ],
+      "id": "0d83174e-37db-49b5-92f8-503971264d61",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        768,
+        0
+      ],
+      "id": "c45ffa13-c88f-4997-b813-966591158ab0",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "df7ad9f3-30a8-4cd3-a166-4af6a367b388",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7c474d8ac597cec5b31faab71dd3facf0f964a266f94333092d906ecfa79402b"
+  },
+  "id": "kTMhbeb8bj5Con9w",
+  "tags": []
+}
