@@ -1,501 +1,485 @@
 [
-{
-  "model": "projects.siteprofile",
-  "pk": 1,
-  "fields": {
-    "name": "",
-    "title": "",
-    "bio": "",
-    "profile_image": "",
-    "email": "",
-    "phone": "",
-    "github_url": "",
-    "linkedin_url": "",
-    "resume_file": "",
-    "updated_at": "2026-04-30T21:00:23.736Z"
+  {
+    "model": "projects.siteprofile",
+    "pk": 2,
+    "fields": {
+      "name": "Nolan La",
+      "title": "Business Fellow | Strategy & M&A | Baylor University",
+      "bio": "Strategy professional with a passion for solving complex business problems through technology and data-driven insights. I'm currently working with Baylor Angel Network in early-stage venture analysis and will be joining KPMG's Strategy & M&A team in 2026. My background spans finance, strategic planning, and technology implementation across leading organizations including Dell, Southwest Solutions, and Stella Mattina.",
+      "profile_image": "profile/BAN_Headshot.jpg",
+      "email": "nolan_la1@baylor.edu",
+      "phone": "(469) 406-6650",
+      "github_url": "https://github.com/nolanvla-tech",
+      "linkedin_url": "https://linkedin.com/in/nolanla",
+      "resume_file": "resume/Nolan_La_Resume_2025__1.pdf",
+      "updated_at": "2026-05-03T18:43:02.392Z"
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 1,
+    "fields": {
+      "title": "Learning Log",
+      "summary": "A Django web application for tracking learning progress and notes",
+      "business_problem": "Need a simple way to document and organize learning materials across multiple topics",
+      "description": "A full-stack Django application that allows users to create topics and log entries. Features include user authentication, entry editing/deletion, and topic organization. Built with Django ORM, Bootstrap, and SQLite.",
+      "category": "django_app",
+      "tools_used": "Django, Python, SQLite, Bootstrap, HTML/CSS",
+      "key_features": "User authentication, Topic management, Entry logging and editing, Responsive design",
+      "your_role": "Full-stack developer - designed database schema, implemented all views and templates",
+      "biggest_challenge": "Implementing efficient database queries for large entry collections while maintaining performance",
+      "lessons_learned": "Importance of database indexing, user experience design, and clean code organization",
+      "featured_image": "",
+      "video_embed_url": null,
+      "github_url": "https://github.com/nolanvla-tech/learninglogproject",
+      "demo_url": null,
+      "is_featured": true,
+      "display_order": 1,
+      "created_at": "2026-05-01T16:00:50.690Z",
+      "updated_at": "2026-05-05T19:59:06.286Z"
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 2,
+    "fields": {
+      "title": "Campus SkillSwap",
+      "summary": "A peer-to-peer skill sharing platform for college students",
+      "business_problem": "College students want to learn new skills from peers but lack a centralized platform to connect and coordinate",
+      "description": "A Django web application connecting students who want to teach and learn skills from each other. Features include skill profiles, matching algorithms, scheduling, and reviews. Designed to build community while facilitating knowledge transfer.",
+      "category": "django_app",
+      "tools_used": "Django, Python, PostgreSQL, Bootstrap, JavaScript, Django REST Framework",
+      "key_features": "Skill profiles and matching, User authentication, Scheduling system, Review and ratings, Notification system",
+      "your_role": "Led project architecture and backend development, implemented matching algorithm",
+      "biggest_challenge": "Building an intelligent matching algorithm that considers user preferences and availability",
+      "lessons_learned": "Importance of MVP approach, user testing, and scalable architecture design",
+      "featured_image": "",
+      "video_embed_url": null,
+      "github_url": "https://github.com/nolanvla-tech/ProjectSkillSwap",
+      "demo_url": null,
+      "is_featured": true,
+      "display_order": 2,
+      "created_at": "2026-05-01T16:00:50.700Z",
+      "updated_at": "2026-05-05T19:59:23.722Z"
+    }
+  },
+  {
+    "model": "projects.project",
+    "pk": 3,
+    "fields": {
+      "title": "n8n Automation Workflow",
+      "summary": "Automated business process workflows using n8n no-code platform",
+      "business_problem": "Manual data entry and repetitive business processes were consuming significant time and prone to errors",
+      "description": "Designed and implemented comprehensive automation workflows using n8n connecting multiple APIs and services. Workflows handle data extraction, transformation, and integration across platforms including Slack, Gmail, Google Sheets, and custom databases.",
+      "category": "n8n_automation",
+      "tools_used": "n8n, APIs, Webhooks, Google Workspace, Slack, MongoDB",
+      "key_features": "Data extraction and transformation, Multi-platform integration, Error handling and logging, Scheduled execution",
+      "your_role": "Workflow architect and implementer - designed entire workflow logic and API integrations",
+      "biggest_challenge": "Handling complex error scenarios and ensuring reliability across multiple external services",
+      "lessons_learned": "Power of no-code platforms, importance of error handling, and API rate limit management",
+      "featured_image": "",
+      "video_embed_url": null,
+      "github_url": "https://github.com/nolanvla-tech/n8n-workflows",
+      "demo_url": null,
+      "is_featured": true,
+      "display_order": 3,
+      "created_at": "2026-05-01T16:00:50.706Z",
+      "updated_at": "2026-05-01T16:00:50.706Z"
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 1,
+    "fields": {
+      "name": "Python",
+      "category": "technical",
+      "proficiency": "expert",
+      "description": "",
+      "display_order": 1
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 2,
+    "fields": {
+      "name": "Django",
+      "category": "technical",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 2
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 3,
+    "fields": {
+      "name": "JavaScript",
+      "category": "technical",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 3
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 4,
+    "fields": {
+      "name": "SQL",
+      "category": "technical",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 4
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 5,
+    "fields": {
+      "name": "HTML/CSS",
+      "category": "technical",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 5
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 6,
+    "fields": {
+      "name": "Excel/VBA",
+      "category": "technical",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 6
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 7,
+    "fields": {
+      "name": "Git/GitHub",
+      "category": "technical",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 7
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 8,
+    "fields": {
+      "name": "APIs & Webhooks",
+      "category": "technical",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 8
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 9,
+    "fields": {
+      "name": "n8n",
+      "category": "technical",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 9
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 10,
+    "fields": {
+      "name": "PostgreSQL",
+      "category": "technical",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 10
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 11,
+    "fields": {
+      "name": "Bootstrap",
+      "category": "technical",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 11
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 12,
+    "fields": {
+      "name": "Financial Analysis",
+      "category": "business",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 12
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 13,
+    "fields": {
+      "name": "Due Diligence",
+      "category": "business",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 13
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 14,
+    "fields": {
+      "name": "Strategic Planning",
+      "category": "business",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 14
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 15,
+    "fields": {
+      "name": "M&A Analysis",
+      "category": "business",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 15
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 16,
+    "fields": {
+      "name": "Market Research",
+      "category": "business",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 16
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 17,
+    "fields": {
+      "name": "Business Modeling",
+      "category": "business",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 17
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 18,
+    "fields": {
+      "name": "Venture Analysis",
+      "category": "business",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 18
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 19,
+    "fields": {
+      "name": "Leadership",
+      "category": "soft",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 19
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 20,
+    "fields": {
+      "name": "Problem Solving",
+      "category": "soft",
+      "proficiency": "expert",
+      "description": "",
+      "display_order": 20
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 21,
+    "fields": {
+      "name": "Communication",
+      "category": "soft",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 21
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 22,
+    "fields": {
+      "name": "Project Management",
+      "category": "soft",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 22
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 23,
+    "fields": {
+      "name": "Team Collaboration",
+      "category": "soft",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 23
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 24,
+    "fields": {
+      "name": "Critical Thinking",
+      "category": "soft",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 24
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 25,
+    "fields": {
+      "name": "Adaptability",
+      "category": "soft",
+      "proficiency": "advanced",
+      "description": "",
+      "display_order": 25
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 26,
+    "fields": {
+      "name": "Spanish",
+      "category": "language",
+      "proficiency": "intermediate",
+      "description": "",
+      "display_order": 26
+    }
+  },
+  {
+    "model": "projects.skill",
+    "pk": 27,
+    "fields": {
+      "name": "English",
+      "category": "language",
+      "proficiency": "expert",
+      "description": "",
+      "display_order": 27
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 1,
+    "fields": {
+      "title": "Bachelor of Business Administration (BBA)",
+      "company": "Baylor University",
+      "experience_type": "education",
+      "location": "Waco, Texas",
+      "start_date": "2022-08-01",
+      "end_date": "2026-05-15",
+      "description": "Major: Finance, Strategy & MIS\nMinor: Entrepreneurship\nGPA: 3.82/4.0\nRelevant Coursework: Financial Analysis, Corporate Strategy, Business Analytics, Database Management",
+      "display_order": 1
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 2,
+    "fields": {
+      "title": "Senior Analyst",
+      "company": "Baylor Angel Network",
+      "experience_type": "work",
+      "location": "Waco, Texas",
+      "start_date": "2024-09-01",
+      "end_date": null,
+      "description": "Conduct early-stage venture analysis and due diligence\nEvaluate business models and financial projections\nAssist in investment decision-making processes\nManage portfolio company relationships",
+      "display_order": 2
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 3,
+    "fields": {
+      "title": "Summer Financial Analyst",
+      "company": "Dell Technologies",
+      "experience_type": "work",
+      "location": "Austin, Texas",
+      "start_date": "2025-06-01",
+      "end_date": "2025-08-31",
+      "description": "Conducted financial analysis on business unit performance\nCreated executive dashboards and reporting systems\nAnalyzed quarterly revenue trends and forecasting\nSupported M&A due diligence process",
+      "display_order": 3
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 4,
+    "fields": {
+      "title": "IT Implementations Intern",
+      "company": "Southwest Solutions Group",
+      "experience_type": "work",
+      "location": "Chicago, Illinois",
+      "start_date": "2024-05-01",
+      "end_date": "2024-08-31",
+      "description": "Implemented IT solutions for enterprise clients\nManaged project timelines and client communications\nTroubleshooting technical issues and supporting deployments\nDocumented processes and created user guides",
+      "display_order": 4
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 5,
+    "fields": {
+      "title": "Revenue Cycle Management Intern",
+      "company": "Stella Mattina",
+      "experience_type": "work",
+      "location": "Chicago, Illinois",
+      "start_date": "2023-06-01",
+      "end_date": "2023-08-31",
+      "description": "Analyzed healthcare revenue cycles and billing processes\nIdentified cost reduction opportunities\nCreated process improvement recommendations\nTrained staff on new billing procedures",
+      "display_order": 5
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 6,
+    "fields": {
+      "title": "Board Member",
+      "company": "Bearly Used Sustainability Initiative",
+      "experience_type": "leadership",
+      "location": "Waco, Texas",
+      "start_date": "2023-08-01",
+      "end_date": null,
+      "description": "Lead sustainability initiatives on campus\nCoordinate with administration on environmental policies\nOrganize community engagement and education events\nManage project budgets and timelines",
+      "display_order": 6
+    }
+  },
+  {
+    "model": "projects.experience",
+    "pk": 7,
+    "fields": {
+      "title": "Leadership Consultant",
+      "company": "The Consulting Group (TCG) - Baylor",
+      "experience_type": "leadership",
+      "location": "Waco, Texas",
+      "start_date": "2024-01-01",
+      "end_date": null,
+      "description": "Provide strategic consulting to student organizations\nFacilitate business planning and strategy sessions\nMentor emerging student leaders\nDevelop organizational best practices guides",
+      "display_order": 7
+    }
   }
-},
-{
-  "model": "projects.siteprofile",
-  "pk": 2,
-  "fields": {
-    "name": "Nolan La",
-    "title": "Business Fellow | Strategy & M&A | Baylor University",
-    "bio": "Strategy professional with a passion for solving complex business problems through technology and data-driven insights. I'm currently working with Baylor Angel Network in early-stage venture analysis and will be joining KPMG's Strategy & M&A team in 2026. My background spans finance, strategic planning, and technology implementation across leading organizations including Dell, Southwest Solutions, and Stella Mattina.",
-    "profile_image": "profile/BAN_Headshot.jpg",
-    "email": "nolan_la1@baylor.edu",
-    "phone": "(469) 406-6650",
-    "github_url": "https://github.com/nolanvla-tech",
-    "linkedin_url": "https://linkedin.com/in/nolanla",
-    "resume_file": "resume/Nolan_La_Resume_2025__1.pdf",
-    "updated_at": "2026-05-03T18:43:02.392Z"
-  }
-},
-{
-  "model": "projects.project",
-  "pk": 1,
-  "fields": {
-    "title": "Learning Log",
-    "summary": "A Django web application for tracking learning progress and notes",
-    "business_problem": "Need a simple way to document and organize learning materials across multiple topics",
-    "description": "A full-stack Django application that allows users to create topics and log entries. Features include user authentication, entry editing/deletion, and topic organization. Built with Django ORM, Bootstrap, and SQLite.",
-    "category": "django_app",
-    "tools_used": "Django, Python, SQLite, Bootstrap, HTML/CSS",
-    "key_features": "User authentication, Topic management, Entry logging and editing, Responsive design",
-    "your_role": "Full-stack developer - designed database schema, implemented all views and templates",
-    "biggest_challenge": "Implementing efficient database queries for large entry collections while maintaining performance",
-    "lessons_learned": "Importance of database indexing, user experience design, and clean code organization",
-    "featured_image": "",
-    "video_embed_url": null,
-    "github_url": "https://github.com/nolanvla-tech/learninglogproject",
-    "demo_url": null,
-    "is_featured": true,
-    "display_order": 1,
-    "created_at": "2026-05-01T16:00:50.690Z",
-    "updated_at": "2026-05-05T19:59:06.286Z"
-  }
-},
-{
-  "model": "projects.project",
-  "pk": 2,
-  "fields": {
-    "title": "Campus SkillSwap",
-    "summary": "A peer-to-peer skill sharing platform for college students",
-    "business_problem": "College students want to learn new skills from peers but lack a centralized platform to connect and coordinate",
-    "description": "A Django web application connecting students who want to teach and learn skills from each other. Features include skill profiles, matching algorithms, scheduling, and reviews. Designed to build community while facilitating knowledge transfer.",
-    "category": "django_app",
-    "tools_used": "Django, Python, PostgreSQL, Bootstrap, JavaScript, Django REST Framework",
-    "key_features": "Skill profiles and matching, User authentication, Scheduling system, Review and ratings, Notification system",
-    "your_role": "Led project architecture and backend development, implemented matching algorithm",
-    "biggest_challenge": "Building an intelligent matching algorithm that considers user preferences and availability",
-    "lessons_learned": "Importance of MVP approach, user testing, and scalable architecture design",
-    "featured_image": "",
-    "video_embed_url": null,
-    "github_url": "https://github.com/nolanvla-tech/ProjectSkillSwap",
-    "demo_url": null,
-    "is_featured": true,
-    "display_order": 2,
-    "created_at": "2026-05-01T16:00:50.700Z",
-    "updated_at": "2026-05-05T19:59:23.722Z"
-  }
-},
-{
-  "model": "projects.project",
-  "pk": 3,
-  "fields": {
-    "title": "n8n Automation Workflow",
-    "summary": "Automated business process workflows using n8n no-code platform",
-    "business_problem": "Manual data entry and repetitive business processes were consuming significant time and prone to errors",
-    "description": "Designed and implemented comprehensive automation workflows using n8n connecting multiple APIs and services. Workflows handle data extraction, transformation, and integration across platforms including Slack, Gmail, Google Sheets, and custom databases.",
-    "category": "n8n_automation",
-    "tools_used": "n8n, APIs, Webhooks, Google Workspace, Slack, MongoDB",
-    "key_features": "Data extraction and transformation, Multi-platform integration, Error handling and logging, Scheduled execution",
-    "your_role": "Workflow architect and implementer - designed entire workflow logic and API integrations",
-    "biggest_challenge": "Handling complex error scenarios and ensuring reliability across multiple external services",
-    "lessons_learned": "Power of no-code platforms, importance of error handling, and API rate limit management",
-    "featured_image": "",
-    "video_embed_url": null,
-    "github_url": "https://github.com/nolanvla-tech/n8n-workflows",
-    "demo_url": null,
-    "is_featured": true,
-    "display_order": 3,
-    "created_at": "2026-05-01T16:00:50.706Z",
-    "updated_at": "2026-05-01T16:00:50.706Z"
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 1,
-  "fields": {
-    "name": "Python",
-    "category": "technical",
-    "proficiency": "expert",
-    "description": "",
-    "display_order": 1
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 2,
-  "fields": {
-    "name": "Django",
-    "category": "technical",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 2
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 3,
-  "fields": {
-    "name": "JavaScript",
-    "category": "technical",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 3
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 4,
-  "fields": {
-    "name": "SQL",
-    "category": "technical",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 4
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 5,
-  "fields": {
-    "name": "HTML/CSS",
-    "category": "technical",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 5
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 6,
-  "fields": {
-    "name": "Excel/VBA",
-    "category": "technical",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 6
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 7,
-  "fields": {
-    "name": "Git/GitHub",
-    "category": "technical",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 7
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 8,
-  "fields": {
-    "name": "APIs & Webhooks",
-    "category": "technical",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 8
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 9,
-  "fields": {
-    "name": "n8n",
-    "category": "technical",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 9
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 10,
-  "fields": {
-    "name": "PostgreSQL",
-    "category": "technical",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 10
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 11,
-  "fields": {
-    "name": "Bootstrap",
-    "category": "technical",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 11
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 12,
-  "fields": {
-    "name": "Financial Analysis",
-    "category": "business",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 12
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 13,
-  "fields": {
-    "name": "Due Diligence",
-    "category": "business",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 13
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 14,
-  "fields": {
-    "name": "Strategic Planning",
-    "category": "business",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 14
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 15,
-  "fields": {
-    "name": "M&A Analysis",
-    "category": "business",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 15
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 16,
-  "fields": {
-    "name": "Market Research",
-    "category": "business",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 16
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 17,
-  "fields": {
-    "name": "Business Modeling",
-    "category": "business",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 17
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 18,
-  "fields": {
-    "name": "Venture Analysis",
-    "category": "business",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 18
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 19,
-  "fields": {
-    "name": "Leadership",
-    "category": "soft",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 19
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 20,
-  "fields": {
-    "name": "Problem Solving",
-    "category": "soft",
-    "proficiency": "expert",
-    "description": "",
-    "display_order": 20
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 21,
-  "fields": {
-    "name": "Communication",
-    "category": "soft",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 21
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 22,
-  "fields": {
-    "name": "Project Management",
-    "category": "soft",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 22
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 23,
-  "fields": {
-    "name": "Team Collaboration",
-    "category": "soft",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 23
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 24,
-  "fields": {
-    "name": "Critical Thinking",
-    "category": "soft",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 24
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 25,
-  "fields": {
-    "name": "Adaptability",
-    "category": "soft",
-    "proficiency": "advanced",
-    "description": "",
-    "display_order": 25
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 26,
-  "fields": {
-    "name": "Spanish",
-    "category": "language",
-    "proficiency": "intermediate",
-    "description": "",
-    "display_order": 26
-  }
-},
-{
-  "model": "projects.skill",
-  "pk": 27,
-  "fields": {
-    "name": "English",
-    "category": "language",
-    "proficiency": "expert",
-    "description": "",
-    "display_order": 27
-  }
-},
-{
-  "model": "projects.experience",
-  "pk": 1,
-  "fields": {
-    "title": "Bachelor of Business Administration (BBA)",
-    "company": "Baylor University",
-    "experience_type": "education",
-    "location": "Waco, Texas",
-    "start_date": "2022-08-01",
-    "end_date": "2026-05-15",
-    "description": "Major: Finance, Strategy & MIS\nMinor: Entrepreneurship\nGPA: 3.82/4.0\nRelevant Coursework: Financial Analysis, Corporate Strategy, Business Analytics, Database Management",
-    "display_order": 1
-  }
-},
-{
-  "model": "projects.experience",
-  "pk": 2,
-  "fields": {
-    "title": "Senior Analyst",
-    "company": "Baylor Angel Network",
-    "experience_type": "work",
-    "location": "Waco, Texas",
-    "start_date": "2024-09-01",
-    "end_date": null,
-    "description": "Conduct early-stage venture analysis and due diligence\nEvaluate business models and financial projections\nAssist in investment decision-making processes\nManage portfolio company relationships",
-    "display_order": 2
-  }
-},
-{
-  "model": "projects.experience",
-  "pk": 3,
-  "fields": {
-    "title": "Summer Financial Analyst",
-    "company": "Dell Technologies",
-    "experience_type": "work",
-    "location": "Austin, Texas",
-    "start_date": "2025-06-01",
-    "end_date": "2025-08-31",
-    "description": "Conducted financial analysis on business unit performance\nCreated executive dashboards and reporting systems\nAnalyzed quarterly revenue trends and forecasting\nSupported M&A due diligence process",
-    "display_order": 3
-  }
-},
-{
-  "model": "projects.experience",
-  "pk": 4,
-  "fields": {
-    "title": "IT Implementations Intern",
-    "company": "Southwest Solutions Group",
-    "experience_type": "work",
-    "location": "Chicago, Illinois",
-    "start_date": "2024-05-01",
-    "end_date": "2024-08-31",
-    "description": "Implemented IT solutions for enterprise clients\nManaged project timelines and client communications\nTroubleshooting technical issues and supporting deployments\nDocumented processes and created user guides",
-    "display_order": 4
-  }
-},
-{
-  "model": "projects.experience",
-  "pk": 5,
-  "fields": {
-    "title": "Revenue Cycle Management Intern",
-    "company": "Stella Mattina",
-    "experience_type": "work",
-    "location": "Chicago, Illinois",
-    "start_date": "2023-06-01",
-    "end_date": "2023-08-31",
-    "description": "Analyzed healthcare revenue cycles and billing processes\nIdentified cost reduction opportunities\nCreated process improvement recommendations\nTrained staff on new billing procedures",
-    "display_order": 5
-  }
-},
-{
-  "model": "projects.experience",
-  "pk": 6,
-  "fields": {
-    "title": "Board Member",
-    "company": "Bearly Used Sustainability Initiative",
-    "experience_type": "leadership",
-    "location": "Waco, Texas",
-    "start_date": "2023-08-01",
-    "end_date": null,
-    "description": "Lead sustainability initiatives on campus\nCoordinate with administration on environmental policies\nOrganize community engagement and education events\nManage project budgets and timelines",
-    "display_order": 6
-  }
-},
-{
-  "model": "projects.experience",
-  "pk": 7,
-  "fields": {
-    "title": "Leadership Consultant",
-    "company": "The Consulting Group (TCG) - Baylor",
-    "experience_type": "leadership",
-    "location": "Waco, Texas",
-    "start_date": "2024-01-01",
-    "end_date": null,
-    "description": "Provide strategic consulting to student organizations\nFacilitate business planning and strategy sessions\nMentor emerging student leaders\nDevelop organizational best practices guides",
-    "display_order": 7
-  }
-}
 ]
