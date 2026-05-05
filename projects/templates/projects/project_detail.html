@@ -231,10 +231,32 @@
 
 .workflow-viewer-header {
     background: #f8f9fa;
-    padding: 1rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.workflow-view-toggle { display: flex; gap: 0.5rem; }
+
+.toggle-btn {
+    padding: 0.3rem 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+.toggle-btn.active {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
 }
 
 .workflow-tabs {
@@ -245,9 +267,9 @@
 }
 
 .workflow-tab {
-    padding: 0.75rem 1.25rem;
+    padding: 0.65rem 1.25rem;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--text-light);
     border-bottom: 3px solid transparent;
@@ -267,23 +289,34 @@
     background: white;
 }
 
+.workflow-canvas-container {
+    background: #f0f4f8;
+    height: 420px;
+    overflow: hidden;
+    cursor: grab;
+    position: relative;
+}
+
+.workflow-canvas-container:active { cursor: grabbing; }
+
 .workflow-code-window {
     background: #1e1e1e;
     padding: 1.5rem;
-    max-height: 500px;
+    height: 420px;
     overflow-y: auto;
     font-family: 'Courier New', monospace;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     line-height: 1.6;
     color: #d4d4d4;
     white-space: pre;
+    display: none;
 }
 
 .workflow-loading {
-    padding: 2rem;
+    padding: 3rem;
     text-align: center;
     color: var(--text-light);
-    background: #1e1e1e;
+    font-size: 0.95rem;
 }
 
 /* Related Projects */
@@ -445,45 +478,116 @@
     </aside>
 </div>
 
-<!-- n8n Workflow File Viewer -->
+<!-- n8n Workflow Visualizer -->
 {% if project.category == 'n8n_automation' %}
 <div class="workflow-viewer">
-    <div class="workflow-viewer-header">Workflow Files</div>
-    <div class="workflow-tabs">
-        <button class="workflow-tab active" onclick="loadFile('Orchestrator', this)">Orchestrator</button>
-        <button class="workflow-tab" onclick="loadFile('Intake', this)">Intake</button>
-        <button class="workflow-tab" onclick="loadFile('Comms', this)">Comms</button>
-        <button class="workflow-tab" onclick="loadFile('Pricing', this)">Pricing</button>
-        <button class="workflow-tab" onclick="loadFile('Scheduling', this)">Scheduling</button>
+    <div class="workflow-viewer-header">
+        <span>Workflow Visualizer</span>
+        <div class="workflow-view-toggle">
+            <button class="toggle-btn active" id="btn-visual" onclick="setView('visual')">Visual</button>
+            <button class="toggle-btn" id="btn-json" onclick="setView('json')">JSON</button>
+        </div>
     </div>
-    <div id="workflow-code" class="workflow-loading">Loading...</div>
+    <div class="workflow-tabs">
+        <button class="workflow-tab active" onclick="loadWorkflow('Orchestrator', this)">Orchestrator</button>
+        <button class="workflow-tab" onclick="loadWorkflow('Intake', this)">Intake</button>
+        <button class="workflow-tab" onclick="loadWorkflow('Comms', this)">Comms</button>
+        <button class="workflow-tab" onclick="loadWorkflow('Pricing', this)">Pricing</button>
+        <button class="workflow-tab" onclick="loadWorkflow('Scheduling', this)">Scheduling</button>
+    </div>
+    <div id="workflow-visual" class="workflow-canvas-container"><div class="workflow-loading">Loading...</div></div>
+    <div id="workflow-json" class="workflow-code-window"></div>
 </div>
 
 <script>
-    const baseUrl = 'https://raw.githubusercontent.com/nolanvla-tech/FinalProject/main/Agent%20-%20';
+const NODE_COLORS = {
+    httpRequest: '#3B82F6', set: '#10B981', gmail: '#EF4444',
+    googleSheetsTrigger: '#22C55E', openAi: '#8B5CF6', webhook: '#F59E0B',
+    if: '#06B6D4', code: '#F97316', manualTrigger: '#6B7280',
+    respondToWebhook: '#EC4899', stickyNote: '#FCD34D', default: '#64748B'
+};
+const W = 160, H = 52, PAD = 50;
+const BASE = 'https://raw.githubusercontent.com/nolanvla-tech/FinalProject/main/Agent%20-%20';
+let currentData = null, currentView = 'visual';
 
-    function loadFile(name, tab) {
-        document.querySelectorAll('.workflow-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+// Pan/zoom state
+let pan = {x: 0, y: 0}, zoom = 1, dragging = false, lastMouse = {};
 
-        const codeWindow = document.getElementById('workflow-code');
-        codeWindow.className = 'workflow-loading';
-        codeWindow.textContent = 'Loading...';
+function loadWorkflow(name, tab) {
+    document.querySelectorAll('.workflow-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('workflow-visual').innerHTML = '<div class="workflow-loading">Loading...</div>';
+    document.getElementById('workflow-json').textContent = '';
+    fetch(BASE + encodeURIComponent(name) + '.json')
+        .then(r => r.json()).then(data => { currentData = data; render(); })
+        .catch(() => { document.getElementById('workflow-visual').innerHTML = '<div class="workflow-loading">Could not load file.</div>'; });
+}
 
-        fetch(baseUrl + encodeURIComponent(name) + '.json')
-            .then(r => r.text())
-            .then(text => {
-                const formatted = JSON.stringify(JSON.parse(text), null, 2);
-                codeWindow.className = 'workflow-code-window';
-                codeWindow.textContent = formatted;
-            })
-            .catch(() => {
-                codeWindow.className = 'workflow-loading';
-                codeWindow.textContent = 'Could not load file.';
-            });
+function setView(view) {
+    currentView = view;
+    document.getElementById('btn-visual').classList.toggle('active', view === 'visual');
+    document.getElementById('btn-json').classList.toggle('active', view === 'json');
+    document.getElementById('workflow-visual').style.display = view === 'visual' ? 'block' : 'none';
+    document.getElementById('workflow-json').style.display = view === 'json' ? 'block' : 'none';
+    if (currentData) render();
+}
+
+function render() {
+    if (!currentData) return;
+    if (currentView === 'json') { document.getElementById('workflow-json').textContent = JSON.stringify(currentData, null, 2); return; }
+    const nodes = (currentData.nodes || []).filter(n => n.type !== 'n8n-nodes-base.stickyNote');
+    const conns = currentData.connections || {};
+    if (!nodes.length) { document.getElementById('workflow-visual').innerHTML = '<div class="workflow-loading">No nodes found.</div>'; return; }
+
+    const xs = nodes.map(n => n.position[0]), ys = nodes.map(n => n.position[1]);
+    const minX = Math.min(...xs) - PAD, minY = Math.min(...ys) - PAD;
+    const vw = Math.max(...xs) + W + PAD - minX, vh = Math.max(...ys) + H + PAD - minY;
+
+    let paths = '', rects = '';
+
+    for (const [src, c] of Object.entries(conns)) {
+        const s = nodes.find(n => n.name === src); if (!s) continue;
+        const sx = s.position[0] + W, sy = s.position[1] + H / 2;
+        for (const out of (c.main || [])) for (const t of out) {
+            const tgt = nodes.find(n => n.name === t.node); if (!tgt) continue;
+            const tx = tgt.position[0], ty = tgt.position[1] + H / 2;
+            const cx = (sx + tx) / 2;
+            paths += `<path d="M${sx},${sy} C${cx},${sy} ${cx},${ty} ${tx},${ty}" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arr)"/>`;
+        }
     }
 
-    loadFile('Orchestrator', document.querySelector('.workflow-tab'));
+    for (const n of nodes) {
+        const x = n.position[0], y = n.position[1];
+        const color = NODE_COLORS[n.type.split('.').pop()] || NODE_COLORS.default;
+        const label = n.name.length > 19 ? n.name.slice(0, 17) + '…' : n.name;
+        const sub = n.type.split('.').pop();
+        rects += `<g>
+            <rect x="${x}" y="${y}" width="${W}" height="${H}" rx="6" fill="white" stroke="${color}" stroke-width="2"/>
+            <rect x="${x}" y="${y}" width="5" height="${H}" rx="3" fill="${color}"/>
+            <text x="${x+16}" y="${y+21}" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#1e293b">${label}</text>
+            <text x="${x+16}" y="${y+37}" font-family="system-ui,sans-serif" font-size="9" fill="#64748b">${sub}</text>
+        </g>`;
+    }
+
+    const svg = `<svg id="wf-svg" viewBox="${minX} ${minY} ${vw} ${vh}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;user-select:none">
+        <defs><marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94A3B8"/></marker></defs>
+        <g id="wf-canvas">${paths}${rects}</g></svg>`;
+    const container = document.getElementById('workflow-visual');
+    container.innerHTML = svg;
+    pan = {x: 0, y: 0}; zoom = 1;
+    setupPanZoom(container);
+}
+
+function setupPanZoom(el) {
+    const canvas = () => document.getElementById('wf-canvas');
+    const applyTransform = () => canvas() && (canvas().setAttribute('transform', `translate(${pan.x},${pan.y}) scale(${zoom})`));
+    el.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.min(3, Math.max(0.3, zoom * (e.deltaY < 0 ? 1.1 : 0.9))); applyTransform(); }, {passive: false});
+    el.addEventListener('mousedown', e => { dragging = true; lastMouse = {x: e.clientX, y: e.clientY}; });
+    window.addEventListener('mousemove', e => { if (!dragging) return; pan.x += e.clientX - lastMouse.x; pan.y += e.clientY - lastMouse.y; lastMouse = {x: e.clientX, y: e.clientY}; applyTransform(); });
+    window.addEventListener('mouseup', () => dragging = false);
+}
+
+loadWorkflow('Orchestrator', document.querySelector('.workflow-tab'));
 </script>
 {% endif %}
 
